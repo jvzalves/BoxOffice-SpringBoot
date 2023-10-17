@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
 @Table(name = "tb_payment")
 public class Payment {
 	
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
