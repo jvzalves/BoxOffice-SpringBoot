@@ -17,12 +17,6 @@ public class OrderPK {
 	@JoinColumn(name = "ticket_id")
 	private Ticket ticket;
 	
-	@JoinColumn(name = "name_client")
-	private String nameClient;
-	
-	@JoinColumn(name = "ticket_name")
-	private String ticketName;
-
 	public OrderPK() {}
 	
 	public OrderPK(Payment payment, Ticket ticket) {

@@ -3,6 +3,8 @@ package com.jvzalves.BoxOfficeSpringBoot.entities;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,13 +18,22 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type;
+    @Enumerated(EnumType.STRING) 
+    private PaymentType type;
+    
     private String nameClient;
     private Double totalValue;
 	
 	public Payment() {}
 
-	public Payment(Long id, String type, String nameClient, Double totalValue) {
+	public enum PaymentType{
+			
+		CREDIT_CARD,
+		DEBIT_CARD,
+		PIX,
+	}	
+
+	public Payment(Long id, PaymentType type, String nameClient, Double totalValue) {
 		this.id = id;
 		this.type = type;
 		this.nameClient = nameClient;
@@ -37,11 +48,11 @@ public class Payment {
 		this.id = id;
 	}
 
-	public String getType() {
+	public PaymentType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(PaymentType type) {
 		this.type = type;
 	}
 

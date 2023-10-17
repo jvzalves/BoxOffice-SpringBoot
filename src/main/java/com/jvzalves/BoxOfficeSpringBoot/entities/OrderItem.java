@@ -12,13 +12,32 @@ public class OrderItem {
 
 	@EmbeddedId
 	private OrderPK id = new OrderPK();
+	
+	private String ticketName;
 
 	public OrderItem() {}
 	
-	public OrderItem(Payment payment, Ticket ticket) {
+	public OrderItem(Payment payment, Ticket ticket, String ticketName) {
 		id.setPayment(payment);
 		id.setTicket(ticket);
+		this.ticketName = ticketName;
 
+	}
+	
+	public OrderPK getId() {
+		return id;
+	}
+
+	public void setId(OrderPK id) {
+		this.id = id;
+	}
+
+	public String getTicketName() {
+		return ticketName;
+	}
+
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
 	}
 
 	@Override
