@@ -28,7 +28,6 @@ public class Ticket {
     public Ticket() {}
 
 	public Ticket(Long id, String name, String ticketDescription, Double price, Double quantity) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.ticketDescription = ticketDescription;

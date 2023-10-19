@@ -1,4 +1,4 @@
-package com.jvzalves.BoxOfficeSpringBoot.entities;
+	package com.jvzalves.BoxOfficeSpringBoot.entities;
 
 import java.util.Objects;
 

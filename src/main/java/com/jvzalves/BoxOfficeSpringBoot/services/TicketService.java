@@ -6,26 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jvzalves.BoxOfficeSpringBoot.DTO.TicketDTO;
+import com.jvzalves.BoxOfficeSpringBoot.DTO.TicketMinDTO;
 import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
 import com.jvzalves.BoxOfficeSpringBoot.repositories.TicketRepository;
 
 @Service
 public class TicketService {
 
-	@Autowired
-	private TicketRepository ticketRepository;
-
-	@Transactional(readOnly = true)
-	public List<Ticket> findAll() {
-		List<Ticket> result = ticketRepository.findAll();
-		return result.stream().map(x -> new Ticket()).toList();
-	}
-
-	@Transactional(readOnly = true)
-	public Ticket findById(Long id) {
+    @Autowired
+    private TicketRepository ticketRepository;
+    
+	
+	@Transactional(readOnly = true )
+	public TicketDTO findById(Long id) {
 		Ticket result = ticketRepository.findById(id).get();
-		return result;
-
+		TicketDTO  dto = new TicketDTO(result);
+		return dto;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<TicketMinDTO> findAll() {
+		List<Ticket> result = ticketRepository.findAll();
+		List<TicketMinDTO> dto = result.stream().map(x -> new TicketMinDTO(x)).toList();
+		return dto;
 	}
 
 }

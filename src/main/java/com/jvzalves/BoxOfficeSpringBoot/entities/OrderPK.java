@@ -4,16 +4,17 @@ import java.util.Objects;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Embeddable
 public class OrderPK {
 
-	@OneToOne
+	@OneToOne	
 	@JoinColumn(name = "payment_id")
 	private Payment payment;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "ticket_id")
 	private Ticket ticket;
 	

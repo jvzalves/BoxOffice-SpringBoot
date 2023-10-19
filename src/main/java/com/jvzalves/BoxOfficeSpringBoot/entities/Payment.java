@@ -23,7 +23,7 @@ public class Payment {
     
     private String nameClient;
     private Double totalValue;
-	
+    
 	public Payment() {}
 
 	public enum PaymentType{
@@ -31,7 +31,7 @@ public class Payment {
 		CREDIT_CARD,
 		DEBIT_CARD,
 		PIX,
-	}	
+	}
 
 	public Payment(Long id, PaymentType type, String nameClient, Double totalValue) {
 		this.id = id;
@@ -39,21 +39,13 @@ public class Payment {
 		this.nameClient = nameClient;
 		this.totalValue = totalValue;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public PaymentType getType() {
-		return type;
-	}
-
-	public void setType(PaymentType type) {
-		this.type = type;
 	}
 
 	public String getNameClient() {
@@ -72,6 +64,22 @@ public class Payment {
 		this.totalValue = totalValue;
 	}
 
+	public PaymentType getType() {
+		return type;
+	}
+
+	public void setType(PaymentType type) {
+		this.type = type;
+	}
+
+	public Double getTotalValue() {
+		return totalValue;
+	}
+
+	public void setTotalValue(Double totalValue) {
+		this.totalValue = totalValue;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -87,5 +95,6 @@ public class Payment {
 			return false;
 		Payment other = (Payment) obj;
 		return Objects.equals(id, other.id);
-	}	
+	}
+	
 }
