@@ -10,7 +10,7 @@ import jakarta.persistence.OneToOne;
 @Embeddable
 public class OrderPK {
 
-	@OneToOne	
+	@OneToOne
 	@JoinColumn(name = "payment_id")
 	private Payment payment;
 

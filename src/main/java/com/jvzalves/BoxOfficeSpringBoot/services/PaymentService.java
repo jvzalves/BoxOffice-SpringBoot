@@ -13,20 +13,22 @@ import com.jvzalves.BoxOfficeSpringBoot.repositories.PaymentRepository;
 @Service
 public class PaymentService {
 
-    @Autowired
-    private PaymentRepository paymentRepository;
+	@Autowired
+	private PaymentRepository paymentRepository;
 
-    @Transactional(readOnly = true )
+	@Transactional(readOnly = true)
 	public PaymentDTO findById(Long id) {
 		Payment result = paymentRepository.findById(id).get();
 		PaymentDTO dto = new PaymentDTO(result);
 		return dto;
 	}
 
-    @Transactional(readOnly = true )
-	public List<PaymentDTO> findAll(){
+	@Transactional(readOnly = true)
+	public List<PaymentDTO> findAll() {
 		List<Payment> result = paymentRepository.findAll();
 		List<PaymentDTO> dto = result.stream().map(x -> new PaymentDTO(x)).toList();
 		return dto;
 	}
+
+	
 }

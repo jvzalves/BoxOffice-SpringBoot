@@ -8,26 +8,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jvzalves.BoxOfficeSpringBoot.DTO.PaymentDTO;
-import com.jvzalves.BoxOfficeSpringBoot.services.PaymentService;
+import com.jvzalves.BoxOfficeSpringBoot.DTO.OrderDTO;
+import com.jvzalves.BoxOfficeSpringBoot.services.OrderService;
 
 @RestController
-@RequestMapping(value = "/payments")
-public class PaymentController {
-
+@RequestMapping(value = "/orders")
+public class OrderController {
+	
 	@Autowired
-	private PaymentService paymentService;
-
+	private OrderService orderService;
+   
 	@GetMapping(value = "/{id}")
-	public PaymentDTO findById(@PathVariable Long id) {
-		PaymentDTO result = paymentService.findById(id);
+	public OrderDTO findById(@PathVariable Long id) {
+		OrderDTO result = orderService.findById(id);
 		return result;
 	}
-
+	
 	@GetMapping
-	public List<PaymentDTO> findAll() {
-		List<PaymentDTO> result = paymentService.findAll();
+	public List<OrderDTO> findAll() {
+		List<OrderDTO> result = orderService.findAll();
 		return result;
 	}
-
 }

@@ -5,5 +5,5 @@ public interface PaymentProjection {
 	 Long getId();
 	 String getnameClient();
 	 Double gettotalValue();
-
+		
 }

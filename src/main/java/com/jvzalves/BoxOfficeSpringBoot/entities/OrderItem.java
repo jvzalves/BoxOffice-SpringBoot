@@ -1,4 +1,4 @@
-	package com.jvzalves.BoxOfficeSpringBoot.entities;
+package com.jvzalves.BoxOfficeSpringBoot.entities;
 
 import java.util.Objects;
 
@@ -12,15 +12,12 @@ public class OrderItem {
 
 	@EmbeddedId
 	private OrderPK id = new OrderPK();
-	
-	private String ticketName;
 
 	public OrderItem() {}
 	
 	public OrderItem(Payment payment, Ticket ticket, String ticketName) {
 		id.setPayment(payment);
 		id.setTicket(ticket);
-		this.ticketName = ticketName;
 
 	}
 	
@@ -30,14 +27,6 @@ public class OrderItem {
 
 	public void setId(OrderPK id) {
 		this.id = id;
-	}
-
-	public String getTicketName() {
-		return ticketName;
-	}
-
-	public void setTicketName(String ticketName) {
-		this.ticketName = ticketName;
 	}
 
 	@Override
