@@ -32,6 +32,7 @@ public class Payment {
 		DEBIT_CARD,
 		PIX,
 	}
+	
 
 	public Payment(Long id, PaymentType type, String nameClient, Double totalValue) {
 		this.id = id;
