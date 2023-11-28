@@ -1,7 +1,6 @@
 package com.jvzalves.BoxOfficeSpringBoot.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,16 +19,14 @@ public class OrderService {
 
 	@Transactional(readOnly = true)
 	public OrderDTO findById(Long id) {
-		Optional<Order> optionalOrder = orderRepository.findById(id);
-
-		if (optionalOrder.isEmpty()) {
+		try {
+			 Order result = orderRepository.findById(id).get();
+			 OrderDTO dto = new OrderDTO(result);
+			 return dto;
+		} catch (Exception e) {
 			throw new OrderIdNotFoundException("Enter a correct id");
 		}
-
-		Order result = optionalOrder.get();
-		OrderDTO dto = new OrderDTO(result);
-		return dto;
-	}
+	}	
 
 	@Transactional(readOnly = true)
 	public List<OrderDTO> findAll() {

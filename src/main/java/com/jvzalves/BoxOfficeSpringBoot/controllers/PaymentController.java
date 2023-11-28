@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jvzalves.BoxOfficeSpringBoot.DTO.PaymentDTO;
-import com.jvzalves.BoxOfficeSpringBoot.exceptions.PaymentIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.services.PaymentService;
 
 @RestController
@@ -21,12 +20,8 @@ public class PaymentController {
 	private PaymentService paymentService;
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public PaymentDTO findById(@PathVariable Long id) throws Exception {
+	public PaymentDTO findById(@PathVariable Long id)  {
 		PaymentDTO result = paymentService.findById(id);
-		
-		if (result == null) {
-			throw new PaymentIdNotFoundException("Enter a correct id");
-		}
 		return result;
 	}
 

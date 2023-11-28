@@ -1,7 +1,6 @@
 package com.jvzalves.BoxOfficeSpringBoot.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,15 +19,14 @@ public class PaymentService {
 
 	@Transactional(readOnly = true)
 	public PaymentDTO findById(Long id) {
-	    Optional<Payment> optionalPayment = paymentRepository.findById(id);
+		try {
+			 Payment result = paymentRepository.findById(id).get();
+			 PaymentDTO dto = new PaymentDTO(result);
+			 return dto;
+		} catch (Exception e) {
+			throw new PaymentIdNotFoundException("Enter a correct id");
+		}
 
-	    if (optionalPayment.isEmpty()) {
-	        throw new PaymentIdNotFoundException("Enter a correct id");
-	    }
-
-	    Payment result = optionalPayment.get();
-	    PaymentDTO dto = new PaymentDTO(result);
-	    return dto;
 	}
 
 	@Transactional(readOnly = true)
