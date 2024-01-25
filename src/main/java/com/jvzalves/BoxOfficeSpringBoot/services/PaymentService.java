@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jvzalves.BoxOfficeSpringBoot.DTO.PaymentDTO;
 import com.jvzalves.BoxOfficeSpringBoot.entities.Payment;
+import com.jvzalves.BoxOfficeSpringBoot.exceptions.OrderIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.exceptions.PaymentIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.repositories.PaymentRepository;
 
@@ -35,5 +37,15 @@ public class PaymentService {
 		List<PaymentDTO> dto = result.stream().map(x -> new PaymentDTO(x)).toList();
 		return dto;
 	}
-
+	
+	@Transactional
+	public PaymentDTO createPayment(@RequestBody Payment payment) {
+		try {
+			Payment result = paymentRepository.save(payment);
+			PaymentDTO dto = new PaymentDTO(result);
+			return dto;
+		} catch (Exception e) {
+			throw new OrderIdNotFoundException("Error creating payment");
+		}
+	}
 }

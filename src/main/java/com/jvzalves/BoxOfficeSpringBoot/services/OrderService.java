@@ -37,7 +37,7 @@ public class OrderService {
 	}
 	
     @Transactional
-	public OrderDTO updateOrder(@RequestBody Order order) {
+	public OrderDTO createOrder(@RequestBody Order order) {
 		try {
 			Order result = orderRepository.save(order);
 			OrderDTO dto = new OrderDTO(result);
@@ -46,4 +46,9 @@ public class OrderService {
 			throw new OrderIdNotFoundException("Error creating order");
 		}
 	}
+    
+    @Transactional
+    public void deleteById(Long id) {
+    	orderRepository.deleteById(id);
+    }
 }

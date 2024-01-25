@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jvzalves.BoxOfficeSpringBoot.DTO.TicketDTO;
 import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
+import com.jvzalves.BoxOfficeSpringBoot.exceptions.OrderIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.exceptions.TicketIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.repositories.TicketRepository;
 
@@ -26,7 +28,7 @@ public class TicketService {
 
 		} catch (Exception e) {
 			throw new TicketIdNotFoundException("Enter a correct id");
-		}
+	  }
 	}
 
 	@Transactional(readOnly = true)
@@ -35,5 +37,16 @@ public class TicketService {
 		List<TicketDTO> dto = result.stream().map(x -> new TicketDTO(x)).toList();
 		return dto;
 	}
-
+	
+	@Transactional
+	public TicketDTO createTicket(@RequestBody Ticket ticket) {
+		try {
+			Ticket result = ticketRepository.save(ticket);
+			TicketDTO dto = new TicketDTO(result);
+			return dto;
+		} catch (Exception e) {
+			throw new OrderIdNotFoundException("Error creating payment");
+		}
+	}
+	
 }
