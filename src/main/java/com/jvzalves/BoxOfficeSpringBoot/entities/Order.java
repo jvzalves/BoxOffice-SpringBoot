@@ -2,6 +2,7 @@ package com.jvzalves.BoxOfficeSpringBoot.entities;
 
 import com.jvzalves.BoxOfficeSpringBoot.entities.Payment.PaymentType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,9 +19,10 @@ public class Order {
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private Long id;
 	  
-	  @Enumerated(EnumType.STRING) 
+	  @Column(name = "type_payment")
+	  @Enumerated(EnumType.STRING)
 	  private PaymentType type;
-	
+
 	  private String nameClient;
 	  private String ticketName;
 	  private Double totalPurchasePrice;
