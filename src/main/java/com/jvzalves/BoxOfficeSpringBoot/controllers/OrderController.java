@@ -19,7 +19,7 @@ import com.jvzalves.BoxOfficeSpringBoot.entities.Order;
 import com.jvzalves.BoxOfficeSpringBoot.services.OrderService;
 
 @RestController
-@RequestMapping(value = "/orders")
+@RequestMapping(value = "/api/orders/v1")
 public class OrderController {
 
 	@Autowired

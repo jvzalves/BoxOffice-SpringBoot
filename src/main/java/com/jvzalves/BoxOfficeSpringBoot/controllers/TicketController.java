@@ -18,7 +18,7 @@ import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
 import com.jvzalves.BoxOfficeSpringBoot.services.TicketService;
 
 @RestController
-@RequestMapping(value = "/tickets")
+@RequestMapping(value = "/api/tickets/v1")
 public class TicketController {
 
 	@Autowired

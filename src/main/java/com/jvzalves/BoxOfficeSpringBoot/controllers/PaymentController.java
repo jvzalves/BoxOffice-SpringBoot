@@ -18,7 +18,7 @@ import com.jvzalves.BoxOfficeSpringBoot.entities.Payment;
 import com.jvzalves.BoxOfficeSpringBoot.services.PaymentService;
 
 @RestController
-@RequestMapping(value = "/payments")
+@RequestMapping(value = "/api/payments/v1")
 public class PaymentController {
 
 	@Autowired
