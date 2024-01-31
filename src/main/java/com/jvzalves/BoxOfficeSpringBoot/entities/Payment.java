@@ -2,6 +2,7 @@ package com.jvzalves.BoxOfficeSpringBoot.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,8 +18,9 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Enumerated(EnumType.STRING) 
+    
+    @Column(name = "payment_name")
+    @Enumerated(EnumType.STRING)
     private PaymentType type;
     
     private String nameClient;
@@ -33,7 +35,6 @@ public class Payment {
 		PIX,
 	}
 	
-
 	public Payment(Long id, PaymentType type, String nameClient, Double totalValue) {
 		this.id = id;
 		this.type = type;

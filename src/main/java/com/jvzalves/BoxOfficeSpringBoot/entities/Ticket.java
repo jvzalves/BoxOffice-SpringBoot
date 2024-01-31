@@ -17,6 +17,7 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "ticket_name")
 	private String name;
 	
 	@Column(columnDefinition = "TEXT")

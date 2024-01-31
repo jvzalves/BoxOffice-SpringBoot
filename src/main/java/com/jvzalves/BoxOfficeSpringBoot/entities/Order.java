@@ -15,21 +15,20 @@ import jakarta.persistence.Table;
 @Table(name = "tb_order")
 public class Order {
 	  
-	  @Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  private Long id;
-	  
-	  @Column(name = "type_payment")
-	  @Enumerated(EnumType.STRING)
-	  private PaymentType type;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	  private String nameClient;
-	  private String ticketName;
-	  private Double totalPurchasePrice;
-	 
-	   
-    public Order() {}
+	@Column(name = "type_payment")
+	@Enumerated(EnumType.STRING)
+	private PaymentType type;
 
+	private String nameClient;
+	private String ticketName;
+	private Double totalPurchasePrice;
+
+	public Order() {}
+	
 	public Order(Long id, PaymentType type, String nameClient, String ticketName, Double totalPurchasePrice) {
 		this.id = id;
 		this.type = type;
