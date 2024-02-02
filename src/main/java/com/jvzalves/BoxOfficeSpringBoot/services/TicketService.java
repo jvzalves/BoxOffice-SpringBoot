@@ -49,4 +49,24 @@ public class TicketService {
 		}
 	}
 	
+	@Transactional
+	public TicketDTO updateTicket(@RequestBody Ticket ticket) {
+		try {
+			Ticket existingTicket = ticketRepository.findById(ticket.getId())
+					.orElseThrow(() -> new TicketIdNotFoundException("Ticket not found for id: " + ticket.getId()));
+			
+			existingTicket.setName(ticket.getName());
+			existingTicket.setTicketDescription(ticket.getTicketDescription());
+			existingTicket.setPrice(ticket.getPrice());
+			existingTicket.setQuantity(ticket.getQuantity());
+			
+			Ticket upadateTicket = ticketRepository.save(existingTicket);
+			TicketDTO dto = new TicketDTO(upadateTicket);
+			return dto;
+			
+		} catch (Exception e) {
+			throw new TicketIdNotFoundException("Error updating ticket");
+		}
+	}
+	
 }

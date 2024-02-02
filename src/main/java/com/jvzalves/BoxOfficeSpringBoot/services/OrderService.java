@@ -47,6 +47,26 @@ public class OrderService {
 		}
 	}
     
+	@Transactional
+	public OrderDTO updateOrder(@RequestBody Order order) {
+		try {
+			Order existingOrder = orderRepository.findById(order.getId())
+					.orElseThrow(() -> new OrderIdNotFoundException("Order not found for id: " + order.getId()));
+			
+			  existingOrder.setType(order.getType());
+		      existingOrder.setNameClient(order.getNameClient());
+		      existingOrder.setTicketName(order.getTicketName());
+		      existingOrder.setTotalPurchasePrice(order.getTotalPurchasePrice());
+			
+			Order upadateOrder = orderRepository.save(existingOrder);
+			OrderDTO dto = new OrderDTO(upadateOrder);
+			return dto;
+			
+		} catch (Exception e) {
+			throw new OrderIdNotFoundException("Error updating order");
+		}
+	}
+ 
     @Transactional
     public void deleteById(Long id) {
     	orderRepository.deleteById(id);

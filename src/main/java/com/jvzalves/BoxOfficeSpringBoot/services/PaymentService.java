@@ -48,4 +48,23 @@ public class PaymentService {
 			throw new OrderIdNotFoundException("Error creating payment");
 		}
 	}
+	
+	@Transactional
+	public PaymentDTO updatePayment(@RequestBody Payment payment) {
+		try {
+			Payment existingPayment = paymentRepository.findById(payment.getId())
+					.orElseThrow(() -> new PaymentIdNotFoundException("Payment not found for id: " + payment.getId()));
+			
+			existingPayment.setType(payment.getType());
+			existingPayment.setNameClient(payment.getNameClient());
+			existingPayment.setTotalValue(payment.getTotalValue());
+			
+			Payment upadatePayment = paymentRepository.save(existingPayment);
+			PaymentDTO dto = new PaymentDTO(upadatePayment);
+			return dto;
+			
+		} catch (Exception e) {
+			throw new PaymentIdNotFoundException("Error updating payment");
+		}
+	}
 }
