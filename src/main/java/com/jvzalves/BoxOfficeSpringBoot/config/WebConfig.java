@@ -8,7 +8,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.jvzalves.BoxOfficeSpringBoot.serializatin.converter.YamlJackson2HttpMessageConverter;
+import com.jvzalves.BoxOfficeSpringBoot.serialization.converter.YamlJackson2HttpMessageConverter;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

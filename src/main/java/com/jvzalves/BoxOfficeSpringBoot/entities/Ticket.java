@@ -23,17 +23,15 @@ public class Ticket {
 	@Column(columnDefinition = "TEXT")
 	private String ticketDescription;
 	
-	private Double price;
-	private Double quantity;
-
+	private Integer year;
+	
     public Ticket() {}
 
-	public Ticket(Long id, String name, String ticketDescription, Double price, Double quantity) {
+	public Ticket(Long id, String name, String ticketDescription, Integer year) {
 		this.id = id;
 		this.name = name;
 		this.ticketDescription = ticketDescription;
-		this.price = price;
-		this.quantity = quantity;
+		this.year = year;
 	}
 
 	public Long getId() {
@@ -60,20 +58,12 @@ public class Ticket {
 		this.ticketDescription = ticketDescription;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Integer getYear() {
+		return year;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public Double getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Double quantity) {
-		this.quantity = quantity;
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
 	@Override

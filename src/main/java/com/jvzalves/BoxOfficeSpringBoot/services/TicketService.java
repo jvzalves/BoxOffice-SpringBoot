@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jvzalves.BoxOfficeSpringBoot.DTO.TicketDTO;
 import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
-import com.jvzalves.BoxOfficeSpringBoot.exceptions.OrderIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.exceptions.TicketIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.repositories.TicketRepository;
 
@@ -45,7 +44,7 @@ public class TicketService {
 			TicketDTO dto = new TicketDTO(result);
 			return dto;
 		} catch (Exception e) {
-			throw new OrderIdNotFoundException("Error creating payment");
+			throw new TicketIdNotFoundException("Error creating payment");
 		}
 	}
 	
@@ -57,8 +56,7 @@ public class TicketService {
 			
 			existingTicket.setName(ticket.getName());
 			existingTicket.setTicketDescription(ticket.getTicketDescription());
-			existingTicket.setPrice(ticket.getPrice());
-			existingTicket.setQuantity(ticket.getQuantity());
+			existingTicket.setYear(ticket.getYear());
 			
 			Ticket upadateTicket = ticketRepository.save(existingTicket);
 			TicketDTO dto = new TicketDTO(upadateTicket);
@@ -69,4 +67,8 @@ public class TicketService {
 		}
 	}
 	
+	@Transactional
+	public void deleteById(Long id) {
+		ticketRepository.deleteById(id);
+	}
 }

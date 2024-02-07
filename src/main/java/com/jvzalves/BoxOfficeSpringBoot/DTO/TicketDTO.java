@@ -1,22 +1,22 @@
 package com.jvzalves.BoxOfficeSpringBoot.DTO;
 
+import java.util.Objects;
+
 import org.springframework.beans.BeanUtils;
 
 import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
 
 public class TicketDTO {
-
+   
 	private Long id;
 	private String name;
 	private String ticketDescription;
-	private Double price;
-	private Double quantity;
-
-	public TicketDTO() {}
+	private Integer year;
 	
+	public TicketDTO() {}
+
 	public TicketDTO(Ticket entity) {
 		BeanUtils.copyProperties(entity, this);
-
 	}
 
 	public Long getId() {
@@ -26,7 +26,7 @@ public class TicketDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -34,7 +34,7 @@ public class TicketDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getTicketDescription() {
 		return ticketDescription;
 	}
@@ -43,20 +43,16 @@ public class TicketDTO {
 		this.ticketDescription = ticketDescription;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Integer getYear() {
+		return year;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
-	public Double getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Double quantity) {
-		this.quantity = quantity;
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 }
-	
