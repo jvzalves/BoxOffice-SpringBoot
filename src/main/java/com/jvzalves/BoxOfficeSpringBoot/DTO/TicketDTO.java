@@ -1,12 +1,11 @@
 package com.jvzalves.BoxOfficeSpringBoot.DTO;
 
-import java.util.Objects;
-
 import org.springframework.beans.BeanUtils;
+import org.springframework.hateoas.RepresentationModel;
 
 import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
 
-public class TicketDTO {
+public class TicketDTO extends RepresentationModel<TicketDTO> {
    
 	private Long id;
 	private String name;
@@ -51,8 +50,4 @@ public class TicketDTO {
 		this.year = year;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
 }

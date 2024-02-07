@@ -3,11 +3,14 @@ package com.jvzalves.BoxOfficeSpringBoot.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jvzalves.BoxOfficeSpringBoot.DTO.TicketDTO;
+import com.jvzalves.BoxOfficeSpringBoot.controllers.TicketController;
 import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
 import com.jvzalves.BoxOfficeSpringBoot.exceptions.TicketIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.repositories.TicketRepository;
@@ -23,8 +26,9 @@ public class TicketService {
 		try {
 			 Ticket result = ticketRepository.findById(id).get();
 			 TicketDTO dto = new TicketDTO(result);
-			 return dto;
-
+			 dto.add(linkTo(methodOn(TicketController.class).findById(id)).withSelfRel());
+             return dto;
+             
 		} catch (Exception e) {
 			throw new TicketIdNotFoundException("Enter a correct id");
 	  }
