@@ -39,18 +39,18 @@ public class TicketController {
 	}
 	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
-			     produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-	public ResponseEntity<TicketDTO> createTicket(@RequestBody Ticket ticket) {
-		   ticketService.createTicket(ticket);
-		   return new ResponseEntity<>(HttpStatus.CREATED);
-	}
-	
+                 produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
+    public ResponseEntity<TicketDTO> createTicket(@RequestBody Ticket ticket) {
+           TicketDTO dto = ticketService.createTicket(ticket);
+           return new ResponseEntity<>(dto, HttpStatus.CREATED);
+    }  
+
 	@PutMapping (produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML}, 
                  consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML}) 
     public ResponseEntity<TicketDTO>updateTicket(@RequestBody Ticket ticket) {
            TicketDTO updateTicket = ticketService.updateTicket(ticket);
            return new ResponseEntity<>(updateTicket, HttpStatus.OK);
-  }
+    }
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable Long id) {

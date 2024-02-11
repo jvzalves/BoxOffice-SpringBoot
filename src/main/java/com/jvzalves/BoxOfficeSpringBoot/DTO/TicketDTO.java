@@ -6,7 +6,7 @@ import org.springframework.hateoas.RepresentationModel;
 import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
 
 public class TicketDTO extends RepresentationModel<TicketDTO> {
-   
+    
 	private Long id;
 	private String name;
 	private String ticketDescription;
