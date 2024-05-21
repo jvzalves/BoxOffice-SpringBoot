@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.jvzalves.BoxOfficeSpringBoot.exceptions.ExceptionResponse;
+import com.jvzalves.BoxOfficeSpringBoot.exceptions.RequiredObjectIsNullNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.exceptions.TicketIdNotFoundException;
 
 @ControllerAdvice
@@ -21,6 +22,12 @@ public class CustomezedResponseEntityExceptionHandler extends ResponseEntityExce
    public ResponseEntity<ExceptionResponse> handleIdTicketNotFoundException(Exception ex, WebRequest request) {
 	   ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
 	   return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+   }
+   
+   @ExceptionHandler(RequiredObjectIsNullNotFoundException.class)
+   public ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request) {
+	   ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+	   return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
    }
 
 }

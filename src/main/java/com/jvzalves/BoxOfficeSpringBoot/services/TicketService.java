@@ -4,6 +4,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.jvzalves.BoxOfficeSpringBoot.DTO.TicketDTO;
 import com.jvzalves.BoxOfficeSpringBoot.controllers.TicketController;
 import com.jvzalves.BoxOfficeSpringBoot.entities.Ticket;
+import com.jvzalves.BoxOfficeSpringBoot.exceptions.RequiredObjectIsNullNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.exceptions.TicketIdNotFoundException;
 import com.jvzalves.BoxOfficeSpringBoot.repositories.TicketRepository;
 
@@ -44,41 +46,51 @@ public class TicketService {
 	    return dto;
 	}
 
-	@Transactional
-	public TicketDTO createTicket(@RequestBody Ticket ticket) {
-		try {
-			Ticket result = ticketRepository.save(ticket);
-			TicketDTO dto = new TicketDTO(result);
-			dto.add(linkTo(methodOn(TicketController.class).findById(result.getId())).withSelfRel());
+  @Transactional
+    public TicketDTO createTicket(@RequestBody Ticket ticket) {
+        if (ticket == null) {
+            throw new RequiredObjectIsNullNotFoundException("It is not allowed to persist a null object");
+        }
+        try {
+            Ticket result = ticketRepository.save(ticket);
+            TicketDTO dto = new TicketDTO(result);
+            dto.add(linkTo(methodOn(TicketController.class).findById(result.getId())).withSelfRel());
             return dto;  
+        } catch (Exception e) {
+            throw new RequiredObjectIsNullNotFoundException("Error creating ticket");
+        }
+    }
+
+    @Transactional
+    public TicketDTO updateTicket(@RequestBody Ticket ticket) {
+        if (ticket == null) {
+            throw new RequiredObjectIsNullNotFoundException("It is not allowed to persist a null object");
+        }
+        try {
+            Ticket existingTicket = ticketRepository.findById(ticket.getId())
+                .orElseThrow(() -> new RequiredObjectIsNullNotFoundException("Ticket not found for id: " + ticket.getId()));
             
-		} catch (Exception e) {
-			throw new TicketIdNotFoundException("Error creating ticket");
-		}
-	}
-	
-	@Transactional
-	public TicketDTO updateTicket(@RequestBody Ticket ticket) {
-		try {
-			Ticket existingTicket = ticketRepository.findById(ticket.getId())
-					.orElseThrow(() -> new TicketIdNotFoundException("Ticket not found for id: " + ticket.getId()));
-			
-			existingTicket.setName(ticket.getName());
-			existingTicket.setTicketDescription(ticket.getTicketDescription());
-			existingTicket.setYear(ticket.getYear());
-			
-			Ticket upadateTicket = ticketRepository.save(existingTicket);
-			TicketDTO dto = new TicketDTO(upadateTicket);
-			dto.add(linkTo(methodOn(TicketController.class).findById(upadateTicket.getId())).withSelfRel());
+            existingTicket.setName(ticket.getName());
+            existingTicket.setTicketDescription(ticket.getTicketDescription());
+            existingTicket.setYear(ticket.getYear());
+            
+            Ticket updatedTicket = ticketRepository.save(existingTicket);
+            TicketDTO dto = new TicketDTO(updatedTicket);
+            dto.add(linkTo(methodOn(TicketController.class).findById(updatedTicket.getId())).withSelfRel());
             return dto;  
-			
-		} catch (Exception e) {
-			throw new TicketIdNotFoundException("Error updating ticket");
-		}
-	}
+        } catch (Exception e) {
+            throw new RequiredObjectIsNullNotFoundException("Error updating ticket");
+        }
+    }
+
 	
 	@Transactional
 	public void deleteById(Long id) {
-		ticketRepository.deleteById(id);
+		Optional<Ticket> ticket = ticketRepository.findById(id);
+		if (ticket.isPresent()) {
+			ticketRepository.deleteById(id);
+		} else {
+			throw new TicketIdNotFoundException("Ticket not found for this id :: " + id);
+		}
 	}
 }
