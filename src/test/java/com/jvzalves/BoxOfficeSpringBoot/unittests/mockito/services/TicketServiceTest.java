@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,14 +40,14 @@ class TicketServiceTest {
 		
 	@Test
 	void testFindById() {
-	    Ticket enitity = new Ticket();
+	    Ticket entity = new Ticket();
 	    
-	    enitity.setId(1L);
-	    enitity.setName("BATMAN The Dark Knight");
-	    enitity.setTicketDescription("When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.");
-	    enitity.setYear(Integer.valueOf("2008"));
+	    entity.setId(1L);
+	    entity.setName("BATMAN The Dark Knight");
+	    entity.setTicketDescription("When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.");
+	    entity.setYear(Integer.valueOf("2008"));
 	    
-	    when(ticketRepository.findById(1L)).thenReturn(Optional.of(enitity));
+	    when(ticketRepository.findById(1L)).thenReturn(Optional.of(entity));
 	    
 	    var result = ticketService.findById(1L);
 	    assertNotNull(result);
@@ -149,7 +151,56 @@ class TicketServiceTest {
 	
 	@Test
 	void testFindAll() {
-
+	  
+	    List<Ticket> list = new ArrayList<>();
+	    
+	    Ticket ticketOne = new Ticket();
+	    ticketOne.setId(1L);
+	    ticketOne.setName("Name Ticket Test1");
+	    ticketOne.setTicketDescription("Description Ticket Test1");
+	    ticketOne.setYear(2021);  
+	    list.add(ticketOne);
+	    
+	    Ticket ticketTwo = new Ticket();
+	    ticketTwo.setId(2L);
+	    ticketTwo.setName("Name Ticket Test2");
+	    ticketTwo.setTicketDescription("Description Ticket Test2");
+	    ticketTwo.setYear(2022);
+	    list.add(ticketTwo);
+	    
+	    Ticket ticketThree = new Ticket();
+	    ticketThree.setId(3L);
+	    ticketThree.setName("Name Ticket Test3");
+	    ticketThree.setTicketDescription("Description Ticket Test3");
+	    ticketThree.setYear(2023);  
+	    list.add(ticketThree);
+	    
+	    when(ticketRepository.findAll()).thenReturn(list);
+	    
+	    var ticket = ticketService.findAll();
+	    
+	    assertNotNull(ticket);
+	    assertEquals(3, ticket.size());
+	    
+	    var ticketOneResult = ticket.get(0);  
+	    assertNotNull(ticketOneResult);
+	    assertNotNull(ticketOneResult.getId());
+	    assertEquals("Name Ticket Test1", ticketOneResult.getName());
+	    assertEquals("Description Ticket Test1", ticketOneResult.getTicketDescription());
+	    assertEquals(Integer.valueOf(2021), ticketOneResult.getYear());  
+	    
+	    var ticketTwoResult = ticket.get(1);  
+	    assertNotNull(ticketTwoResult);
+	    assertNotNull(ticketTwoResult.getId());
+	    assertEquals("Name Ticket Test2", ticketTwoResult.getName());
+	    assertEquals("Description Ticket Test2", ticketTwoResult.getTicketDescription());
+	    assertEquals(Integer.valueOf(2022), ticketTwoResult.getYear()); 
+	    
+	    var ticketThreeResult = ticket.get(2);  
+	    assertNotNull(ticketThreeResult);
+	    assertNotNull(ticketThreeResult.getId());
+	    assertEquals("Name Ticket Test3", ticketThreeResult.getName());
+	    assertEquals("Description Ticket Test3", ticketThreeResult.getTicketDescription());
+	    assertEquals(Integer.valueOf(2023), ticketThreeResult.getYear());  
 	}
-
 }
