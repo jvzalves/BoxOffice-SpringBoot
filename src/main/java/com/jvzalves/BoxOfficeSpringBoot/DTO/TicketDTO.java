@@ -10,7 +10,7 @@ public class TicketDTO extends RepresentationModel<TicketDTO> {
 	private Long id;
 	private String name;
 	private String ticketDescription;
-	private Integer year;
+	private String year;
 	
 	public TicketDTO() {}
 
@@ -42,11 +42,11 @@ public class TicketDTO extends RepresentationModel<TicketDTO> {
 		this.ticketDescription = ticketDescription;
 	}
 
-	public Integer getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(Integer year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 

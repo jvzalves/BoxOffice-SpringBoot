@@ -43,9 +43,9 @@ class TicketServiceTest {
 	    Ticket entity = new Ticket();
 	    
 	    entity.setId(1L);
-	    entity.setName("BATMAN The Dark Knight");
-	    entity.setTicketDescription("When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.");
-	    entity.setYear(Integer.valueOf("2008"));
+	    entity.setName("Name Ticket");
+	    entity.setTicketDescription("Description Ticket");
+	    entity.setYear("Ticket Year");
 	    
 	    when(ticketRepository.findById(1L)).thenReturn(Optional.of(entity));
 	    
@@ -55,17 +55,17 @@ class TicketServiceTest {
 	    assertNotNull(result.getLinks());
 	    
 	    assertTrue(result.toString().contains("links: [</api/tickets/v1/1>;rel=\"self\"]"));
-	    assertEquals("BATMAN The Dark Knight", result.getName());
-	    assertEquals("When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.", result.getTicketDescription());
-	    assertEquals(2008, result.getYear());;	
+	    assertEquals("Name Ticket", result.getName());
+	    assertEquals("Description Ticket", result.getTicketDescription());
+	    assertEquals("Ticket Year", result.getYear());;	
 	}
 
 	@Test
 	void testCreateTicket() {
 	    Ticket entity = new Ticket();
-	    entity.setName("BATMAN The Dark Knight");
-	    entity.setTicketDescription("When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.");
-	    entity.setYear(2008);
+	    entity.setName("Name Ticket");
+	    entity.setTicketDescription("Description Ticket");
+	    entity.setYear("Ticket Year");
 	    
 	   
 	    Ticket persisted = new Ticket();
@@ -81,9 +81,9 @@ class TicketServiceTest {
 	    assertNotNull(result.getId());
 	    assertNotNull(result.getLinks());
 	    assertTrue(result.toString().contains("links: [</api/tickets/v1/1>;rel=\"self\"]"));
-	    assertEquals("BATMAN The Dark Knight", result.getName());
-	    assertEquals("When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.", result.getTicketDescription());
-	    assertEquals(2008, result.getYear());
+	    assertEquals("Name Ticket", result.getName());
+	    assertEquals("Description Ticket", result.getTicketDescription());
+	    assertEquals("Ticket Year", result.getYear());
 	}
 	
 	@Test
@@ -102,9 +102,9 @@ class TicketServiceTest {
 	@Test
 	void testUpdateTicket() {
 	    Ticket entity = new Ticket();
-	    entity.setName("BATMAN The Dark Knight");
-	    entity.setTicketDescription("When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.");
-	    entity.setYear(2008);
+	    entity.setName("Name Ticket");
+	    entity.setTicketDescription("Description Ticket");
+	    entity.setYear("Ticket Year");
 	    
 	   
 	    Ticket persisted = new Ticket();
@@ -122,9 +122,9 @@ class TicketServiceTest {
 	    assertNotNull(result.getId());
 	    assertNotNull(result.getLinks());
 	    assertTrue(result.toString().contains("links: [</api/tickets/v1/1>;rel=\"self\"]"));
-	    assertEquals("BATMAN The Dark Knight", result.getName());
-	    assertEquals("When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.", result.getTicketDescription());
-	    assertEquals(2008, result.getYear());
+	    assertEquals("Name Ticket", result.getName());
+	    assertEquals("Description Ticket", result.getTicketDescription());
+	    assertEquals("Ticket Year", result.getYear());
 	}
 	
 	@Test
@@ -158,21 +158,21 @@ class TicketServiceTest {
 	    ticketOne.setId(1L);
 	    ticketOne.setName("Name Ticket Test1");
 	    ticketOne.setTicketDescription("Description Ticket Test1");
-	    ticketOne.setYear(2021);  
+	    ticketOne.setYear("2021");  
 	    list.add(ticketOne);
 	    
 	    Ticket ticketTwo = new Ticket();
 	    ticketTwo.setId(2L);
 	    ticketTwo.setName("Name Ticket Test2");
 	    ticketTwo.setTicketDescription("Description Ticket Test2");
-	    ticketTwo.setYear(2022);
+	    ticketTwo.setYear("2022");
 	    list.add(ticketTwo);
 	    
 	    Ticket ticketThree = new Ticket();
 	    ticketThree.setId(3L);
 	    ticketThree.setName("Name Ticket Test3");
 	    ticketThree.setTicketDescription("Description Ticket Test3");
-	    ticketThree.setYear(2023);  
+	    ticketThree.setYear("2023");  
 	    list.add(ticketThree);
 	    
 	    when(ticketRepository.findAll()).thenReturn(list);
@@ -187,20 +187,20 @@ class TicketServiceTest {
 	    assertNotNull(ticketOneResult.getId());
 	    assertEquals("Name Ticket Test1", ticketOneResult.getName());
 	    assertEquals("Description Ticket Test1", ticketOneResult.getTicketDescription());
-	    assertEquals(Integer.valueOf(2021), ticketOneResult.getYear());  
+	    assertEquals("2021", ticketOneResult.getYear());  
 	    
 	    var ticketTwoResult = ticket.get(1);  
 	    assertNotNull(ticketTwoResult);
 	    assertNotNull(ticketTwoResult.getId());
 	    assertEquals("Name Ticket Test2", ticketTwoResult.getName());
 	    assertEquals("Description Ticket Test2", ticketTwoResult.getTicketDescription());
-	    assertEquals(Integer.valueOf(2022), ticketTwoResult.getYear()); 
+	    assertEquals("2022", ticketTwoResult.getYear()); 
 	    
 	    var ticketThreeResult = ticket.get(2);  
 	    assertNotNull(ticketThreeResult);
 	    assertNotNull(ticketThreeResult.getId());
 	    assertEquals("Name Ticket Test3", ticketThreeResult.getName());
 	    assertEquals("Description Ticket Test3", ticketThreeResult.getTicketDescription());
-	    assertEquals(Integer.valueOf(2023), ticketThreeResult.getYear());  
+	    assertEquals("2023", ticketThreeResult.getYear());  
 	}
 }

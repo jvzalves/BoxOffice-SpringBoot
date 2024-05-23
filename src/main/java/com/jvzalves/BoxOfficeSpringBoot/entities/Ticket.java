@@ -23,11 +23,11 @@ public class Ticket {
 	@Column(columnDefinition = "TEXT")
 	private String ticketDescription;
 	
-	private Integer year;
+	private String year;
 	
     public Ticket() {}
 
-	public Ticket(Long id, String name, String ticketDescription, Integer year) {
+	public Ticket(Long id, String name, String ticketDescription, String year) {
 		this.id = id;
 		this.name = name;
 		this.ticketDescription = ticketDescription;
@@ -58,11 +58,11 @@ public class Ticket {
 		this.ticketDescription = ticketDescription;
 	}
 
-	public Integer getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(Integer year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 

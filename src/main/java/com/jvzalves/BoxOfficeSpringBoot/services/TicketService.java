@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jvzalves.BoxOfficeSpringBoot.DTO.TicketDTO;
@@ -45,7 +46,8 @@ public class TicketService {
 	    dto.forEach(ticketDTO -> ticketDTO.add(selfLink));
 	    return dto;
 	}
-
+	
+  @PostMapping
   @Transactional
     public TicketDTO createTicket(@RequestBody Ticket ticket) {
         if (ticket == null) {
