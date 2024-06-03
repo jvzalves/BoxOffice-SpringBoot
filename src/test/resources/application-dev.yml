@@ -1,0 +1,17 @@
+server:
+  port: 8888
+
+# MySQL Connection
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# Show SQL
+  jpa:
+    show-sql: true
+    
+#Swagger configuration    
+springdoc:
+    pathsToMatch: /api/tickets/v1/**
+    swagger-ui:
+      use-root-path: true
