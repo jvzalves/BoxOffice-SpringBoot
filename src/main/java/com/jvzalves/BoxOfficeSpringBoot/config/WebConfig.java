@@ -33,17 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
 	.mediaType("x-yaml", MEDIA_TYPE_APPLICATION_YML);
 	 
 	}
-
 }
 
-      //VIA QUERY PARAM 
-
-		/*configurer.favorParameter(true)
-		.parameterName("mediaType")
-		.ignoreAcceptHeader(true)
-		.useRegisteredExtensionsOnly(false)
-		.defaultContentType(MediaType.APPLICATION_JSON)
-		.mediaType("json", MediaType.APPLICATION_JSON)
-		.mediaType("xml", MediaType.APPLICATION_XML);
-	   */
+  
 		
