@@ -1,3 +1,10 @@
+#Security Config
+security:
+  jwt:
+    token:
+      secret-key: 53ccr37
+      exprired-lenght: 3600000
+
 server:
   port: 8888
 
