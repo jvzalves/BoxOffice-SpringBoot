@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.security.jwt;
+package com.jvzalves.filmlist.security.jwt;
 
 import java.io.IOException;
 

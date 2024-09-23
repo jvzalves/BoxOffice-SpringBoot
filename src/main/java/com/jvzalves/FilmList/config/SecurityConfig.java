@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.config;
+package com.jvzalves.filmlist.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,8 +18,8 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder.Secret
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.jvzalves.FilmList.security.jwt.JwtTokenFilter;
-import com.jvzalves.FilmList.security.jwt.JwtTokenProvider;
+import com.jvzalves.filmlist.security.jwt.JwtTokenFilter;
+import com.jvzalves.filmlist.security.jwt.JwtTokenProvider;
 
 @EnableWebSecurity
 @Configuration

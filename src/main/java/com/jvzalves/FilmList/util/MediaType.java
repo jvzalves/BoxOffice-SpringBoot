@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.util;
+package com.jvzalves.filmlist.util;
 
 public class MediaType {
 	

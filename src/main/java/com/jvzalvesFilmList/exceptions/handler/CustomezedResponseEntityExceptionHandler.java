@@ -1,4 +1,4 @@
-package com.jvzalvesFilmList.exceptions.handler;
+package com.jvzalvesfilmlist.exceptions.handler;
 
 import java.util.Date;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.jvzalves.FilmList.exceptions.ExceptionResponse;
-import com.jvzalves.FilmList.exceptions.RequiredObjectIsNullNotFoundException;
-import com.jvzalves.FilmList.exceptions.TicketIdNotFoundException;
+import com.jvzalves.filmlist.exceptions.ExceptionResponse;
+import com.jvzalves.filmlist.exceptions.RequiredObjectIsNullNotFoundException;
+import com.jvzalves.filmlist.exceptions.TicketIdNotFoundException;
 
 @ControllerAdvice
 @RestController

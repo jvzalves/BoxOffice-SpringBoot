@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList;
+package com.jvzalves.filmlist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

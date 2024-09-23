@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.unittests.mockito.services;
+package com.jvzalves.filmlist.unittests.mockito.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -19,11 +19,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.jvzalves.FilmList.DTO.TicketDTO;
-import com.jvzalves.FilmList.entities.Ticket;
-import com.jvzalves.FilmList.exceptions.RequiredObjectIsNullNotFoundException;
-import com.jvzalves.FilmList.repositories.TicketRepository;
-import com.jvzalves.FilmList.services.TicketService;
+import com.jvzalves.filmlist.DTO.TicketDTO;
+import com.jvzalves.filmlist.entities.Ticket;
+import com.jvzalves.filmlist.exceptions.RequiredObjectIsNullNotFoundException;
+import com.jvzalves.filmlist.repositories.TicketRepository;
+import com.jvzalves.filmlist.services.TicketService;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)

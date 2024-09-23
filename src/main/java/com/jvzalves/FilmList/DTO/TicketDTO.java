@@ -1,9 +1,9 @@
-package com.jvzalves.FilmList.DTO;
+package com.jvzalves.filmlist.DTO;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.hateoas.RepresentationModel;
 
-import com.jvzalves.FilmList.entities.Ticket;
+import com.jvzalves.filmlist.entities.Ticket;
 
 public class TicketDTO extends RepresentationModel<TicketDTO> {
     

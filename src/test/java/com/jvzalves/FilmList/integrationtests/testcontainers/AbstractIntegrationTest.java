@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.integrationtests.testcontainers;
+package com.jvzalves.filmlist.integrationtests.testcontainers;
 
 import java.util.Map;
 import java.util.stream.Stream;

@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.config;
+package com.jvzalves.filmlist.config;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.jvzalves.FilmList.serialization.converter.YamlJackson2HttpMessageConverter;
+import com.jvzalves.filmlist.serialization.converter.YamlJackson2HttpMessageConverter;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

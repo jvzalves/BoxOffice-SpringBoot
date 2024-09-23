@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.exceptions;
+package com.jvzalves.filmlist.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

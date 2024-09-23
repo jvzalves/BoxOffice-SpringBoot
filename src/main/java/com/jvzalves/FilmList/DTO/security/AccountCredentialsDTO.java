@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.DTO.security;
+package com.jvzalves.filmlist.DTO.security;
 
 import java.io.Serializable;
 import java.util.Objects;

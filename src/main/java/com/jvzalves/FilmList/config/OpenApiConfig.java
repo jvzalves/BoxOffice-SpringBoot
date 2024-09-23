@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.config;
+package com.jvzalves.filmlist.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

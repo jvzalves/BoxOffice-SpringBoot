@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.services;
+package com.jvzalves.filmlist.services;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -13,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.jvzalves.FilmList.DTO.TicketDTO;
-import com.jvzalves.FilmList.controllers.TicketController;
-import com.jvzalves.FilmList.entities.Ticket;
-import com.jvzalves.FilmList.exceptions.RequiredObjectIsNullNotFoundException;
-import com.jvzalves.FilmList.exceptions.TicketIdNotFoundException;
-import com.jvzalves.FilmList.repositories.TicketRepository;
+import com.jvzalves.filmlist.DTO.TicketDTO;
+import com.jvzalves.filmlist.controllers.TicketController;
+import com.jvzalves.filmlist.entities.Ticket;
+import com.jvzalves.filmlist.exceptions.RequiredObjectIsNullNotFoundException;
+import com.jvzalves.filmlist.exceptions.TicketIdNotFoundException;
+import com.jvzalves.filmlist.repositories.TicketRepository;
 
 @Service
 public class TicketService {

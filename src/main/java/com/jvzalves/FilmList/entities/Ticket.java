@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.entities;
+package com.jvzalves.filmlist.entities;
 
 import java.util.Objects;
 

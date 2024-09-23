@@ -1,13 +1,13 @@
-package com.jvzalves.FilmList.integrationtests.swagger;
+package com.jvzalves.filmlist.integrationtests.swagger;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.jvzalves.FilmList.configs.TestConfgs;
-import com.jvzalves.FilmList.integrationtests.testcontainers.AbstractIntegrationTest;
+import com.jvzalves.filmlist.configs.TestConfgs;
+import com.jvzalves.filmlist.integrationtests.testcontainers.AbstractIntegrationTest;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class SwaggerIntegrationTest extends AbstractIntegrationTest {

@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.controllers;
+package com.jvzalves.filmlist.controllers;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jvzalves.FilmList.DTO.TicketDTO;
-import com.jvzalves.FilmList.entities.Ticket;
-import com.jvzalves.FilmList.services.TicketService;
-import com.jvzalves.FilmList.util.MediaType;
+import com.jvzalves.filmlist.DTO.TicketDTO;
+import com.jvzalves.filmlist.entities.Ticket;
+import com.jvzalves.filmlist.services.TicketService;
+import com.jvzalves.filmlist.util.MediaType;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

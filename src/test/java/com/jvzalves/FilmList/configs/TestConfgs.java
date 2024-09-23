@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.configs;
+package com.jvzalves.filmlist.configs;
 
 public class TestConfgs {
 	

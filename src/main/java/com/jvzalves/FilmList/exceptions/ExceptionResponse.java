@@ -1,4 +1,4 @@
-package com.jvzalves.FilmList.exceptions;
+package com.jvzalves.filmlist.exceptions;
 
 import java.io.Serializable;
 import java.util.Date;
