@@ -14,7 +14,7 @@ public class OpenApiConfig {
     OpenAPI customOpenApi() {
 		 return new OpenAPI()
 	     .info(new Info()
-	    	.title("BoxOffice-SpringBoot")
+	    	.title("FilmList")
 	    	.version("v1")
 	    	.description("API that simulates a film registration system")
 	    	.termsOfService("")

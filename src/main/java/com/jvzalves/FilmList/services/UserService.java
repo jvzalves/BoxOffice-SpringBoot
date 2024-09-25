@@ -10,23 +10,21 @@ import com.jvzalves.filmlist.repositories.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
-
-	@Autowired
-    UserRepository userRepository;
 	
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	@Autowired
+	UserRepository repository;
+	
+	public UserService(UserRepository repository) {
+		this.repository = repository;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-		var user = userRepository.findByUserName(username);
+		var user = repository.findByUserName(username);
 		if (user != null) {
 			return user;
 		} else {
-
-			throw new UsernameNotFoundException("Username " + username + " not found");
+			throw new UsernameNotFoundException("Username " + username + " not found!");
 		}
 	}
 }

@@ -48,12 +48,12 @@ public class SecurityConfig {
             .addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class)
             .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(requests -> requests
-            .requestMatchers("/auth/signin", "/auth/refresh/**", "/swagger-ui/**", "/v1/api-docs/**").permitAll()
+            .requestMatchers("/auth/signin", "/auth/refresh/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                  .requestMatchers("/api/**").authenticated()
                  .requestMatchers("/users").denyAll())
 				.build();
 	}
- 
+	
 	@Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();

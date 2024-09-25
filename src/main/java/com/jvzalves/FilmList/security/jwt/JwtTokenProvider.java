@@ -29,7 +29,7 @@ public class JwtTokenProvider {
 	@Value("${security.jwt.token.secret-key:secret}")
 	private String secreKey = "secret";
 
-	@Value("${security.jwt.token.exprired-length:3600000}")
+	@Value("${security.jwt.token.expired-length:3600000}") 
 	private long validityInMilliSeconds= 3600000;
 	
 	@Autowired
@@ -51,16 +51,28 @@ public class JwtTokenProvider {
 		return new TokenDTO(username, true, now, validity, accessToken, refreshToken);
 	}
 	
+	public TokenDTO refreshToken(String refreshToken) {
+		if (refreshToken.contains("Bearer ")) refreshToken =
+				refreshToken.substring("Bearer ".length());
+		
+		JWTVerifier verifier = JWT.require(algorithm).build();
+		DecodedJWT decodedJWT = verifier.verify(refreshToken);
+		String username = decodedJWT.getSubject();
+		List<String> roles = decodedJWT.getClaim("roles").asList(String.class);
+		return createAccessToken(username, roles);
+	}
+	
 	private String getAccessToken(String username, List<String> roles, Date now, Date validity) {
-		String issuerUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toString();
-	     return JWT.create()
-			 .withClaim("roles", roles)
-			 .withIssuedAt(now)
-			 .withExpiresAt(validity)
-			 .withSubject(username)
-			 .withIssuer(issuerUrl)
-			 .sign(algorithm)
-			 .strip();	    
+		String issuerUrl = ServletUriComponentsBuilder
+				.fromCurrentContextPath().build().toUriString();
+		return JWT.create()
+				.withClaim("roles", roles)
+				.withIssuedAt(now)
+				.withExpiresAt(validity)
+				.withSubject(username)
+				.withIssuer(issuerUrl)
+				.sign(algorithm)
+				.strip();
 	}
 
 	private String getRefreshToken(String username, List<String> roles, Date now) {
@@ -75,9 +87,9 @@ public class JwtTokenProvider {
 	}
 	
 	public Authentication getAuthentication(String token) {
-		DecodedJWT decodedJWT = decodedToken(token);
-		UserDetails userDetails = this.userDetailsService.loadUserByUsername(decodedJWT.getSubject());
-		return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+	    DecodedJWT decodedJWT = decodedToken(token);
+	    UserDetails userDetails = this.userDetailsService.loadUserByUsername(decodedJWT.getSubject());
+	    return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
 	}
 
 	private DecodedJWT decodedToken(String token) {

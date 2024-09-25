@@ -15,34 +15,49 @@ import com.jvzalves.filmlist.security.jwt.JwtTokenProvider;
 
 @Service
 public class AuthService {
-	
-	@Autowired
-	private JwtTokenProvider jwtTokenProvider;
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private JwtTokenProvider tokenProvider;
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository repository;
 	
 	@SuppressWarnings("rawtypes")
-	public ResponseEntity signin(AccountCredentialsDTO account) {
+	public ResponseEntity signin(AccountCredentialsDTO data) {
 		try {
-			var username = account.getUserName();
-			var passowrd = account.getPassword();
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, passowrd));
+			var username = data.getUsername();
+			var password = data.getPassword();
+			authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(username, password));
 			
-			var user = userRepository.findByUserName(username);
+			var user = repository.findByUserName(username);
+			
 			var tokenResponse = new TokenDTO();
-
 			if (user != null) {
-			    tokenResponse = jwtTokenProvider.createAccessToken(username, user.getRoles());
+				tokenResponse = tokenProvider.createAccessToken(username, user.getRoles());
 			} else {
-				throw new UsernameNotFoundException("Username " + username + "not found!" );
+				throw new UsernameNotFoundException("Username " + username + " not found!");
 			}
 			return ResponseEntity.ok(tokenResponse);
 		} catch (Exception e) {
-			throw new BadCredentialsException("Invalide username/password supplied!");
+			throw new BadCredentialsException("Invalid username/password supplied!");
 		}
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public ResponseEntity refreshToken(String username, String refreshToken) {
+		var user = repository.findByUserName(username);
+		
+		var tokenResponse = new TokenDTO();
+		if (user != null) {
+			tokenResponse = tokenProvider.refreshToken(refreshToken);
+		} else {
+			throw new UsernameNotFoundException("Username " + username + " not found!");
+		}
+		return ResponseEntity.ok(tokenResponse);
+	}
 }
+

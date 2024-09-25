@@ -19,6 +19,8 @@ spring:
     
 #Swagger configuration    
 springdoc:
-    pathsToMatch: /api/tickets/v1/**
+    pathsToMatch: 
+    - /auth/**
+    - /api/tickets/v1/**
     swagger-ui:
       use-root-path: true
