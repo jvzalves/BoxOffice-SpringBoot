@@ -21,9 +21,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/auth") 
 public class AuthController {
-
+    
 	@Autowired
-	AuthService authService;
+	private AuthService authService;
 	
 	@SuppressWarnings("rawtypes")
 	@Operation(summary = "Authenticates a user and returns a token")

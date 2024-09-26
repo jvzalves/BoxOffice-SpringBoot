@@ -16,7 +16,7 @@ public class FilmListSpringBootApplication {
   public static void main(String[] args) {
         SpringApplication.run(FilmListSpringBootApplication.class, args);
         
-       Map<String, PasswordEncoder> encoders = new HashMap<>();
+       /* Map<String, PasswordEncoder> encoders = new HashMap<>();
         
         Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000,SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
         encoders.put("pbkdf2", pbkdf2Encoder);
@@ -25,5 +25,6 @@ public class FilmListSpringBootApplication {
         
         String result = passwordEncoder.encode("admin123");
         System.out.println("My hash" + result);
+        */
     }
 }

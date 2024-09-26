@@ -46,7 +46,7 @@ public class AuthService {
 			throw new BadCredentialsException("Invalid username/password supplied!");
 		}
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity refreshToken(String username, String refreshToken) {
 		var user = repository.findByUserName(username);

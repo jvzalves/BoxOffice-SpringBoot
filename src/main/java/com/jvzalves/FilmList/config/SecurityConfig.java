@@ -31,33 +31,45 @@ public class SecurityConfig {
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		Map<String, PasswordEncoder> encoders = new HashMap<>();
-		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000,  SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
+		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000,
+				SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
 		encoders.put("pbkdf2", pbkdf2Encoder);
 		DelegatingPasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("pbkdf2", encoders);
 		passwordEncoder.setDefaultPasswordEncoderForMatches(pbkdf2Encoder);
 		return passwordEncoder;
 	}
-	 
+
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
 		JwtTokenFilter customFilter = new JwtTokenFilter(jwtTokenProvider);
 
-		return http
+		//@formatter:off
+        return http
             .httpBasic(basic -> basic.disable())
             .csrf(csrf -> csrf.disable())
             .addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class)
-            .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(requests -> requests
-            .requestMatchers("/auth/signin", "/auth/refresh/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                 .requestMatchers("/api/**").authenticated()
-                 .requestMatchers("/users").denyAll())
-				.build();
+                .sessionManagement(
+            		session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(
+                    authorizeHttpRequests -> authorizeHttpRequests
+                        .requestMatchers(
+							"/auth/signin",
+							"/auth/refresh/**",
+                    		"/swagger-ui/**",
+                    		"/v3/api-docs/**"
+                		).permitAll()
+                        .requestMatchers("/api/**").authenticated()
+                        .requestMatchers("/users").denyAll()
+                )
+            .cors(cors -> {})
+                .build();
+        //@formatter:on
 	}
-	
-	@Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-}
 
-	
+	@Bean
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
+}
